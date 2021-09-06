@@ -25,7 +25,7 @@ class UserLogin_forms(forms.ModelForm):
                                )
 
     class Meta:
-        model = user_login_Model
+        model = User
         fields = [
             'username',
             'password',
