@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # custom
     'controller',
     'userController',
+    'dataController',
 ]
 
 MIDDLEWARE = [

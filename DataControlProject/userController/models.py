@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -10,6 +11,5 @@ class user_login_Model(models.Model):
                                 default='')
     joined_at = models.DateField(max_length=25,
                                 auto_created=True)
-
 
 # Create your models here.
