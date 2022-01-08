@@ -1,0 +1,24 @@
+{%extends 'basic_Template.html'%}
+{%load static %}
+{%block content%}
+<div class='form-input'>
+    <script src="{%static 'Script/new-bill.js'%}"></script>
+    {%if user.is_authenticated%}
+    <form action="" method="post">
+        {%csrf_token%}
+        {{form.errors}}
+        {%for field in form%}
+        {% if field.label != "Dono"%}
+        <div class='form-field'>
+            <label for='Titulo'>{{field.label}}</label><br>
+            {{field}}<br>
+            {{field.id}}
+        </div>
+        {%endif%}
+        {%endfor%}
+        {{form.dono.as_hidden}}
+        <input class="pl-2" type="submit" value="enviar data">
+    </form>
+</div>
+{%endif%}
+{%endblock%}

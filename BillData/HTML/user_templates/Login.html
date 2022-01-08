@@ -1,0 +1,62 @@
+{%extends 'basic_Template.html'%}
+{%load static %}
+{%load crispy_forms_tags%}
+{%block imports%}
+<link rel="stylesheet" href="{% static 'style/login-form.css' %}">
+<script src='{%static "Script/login-form.js"%}'></script>
+{%endblock%}
+{%block content%}
+<div id="login">
+    {% if not user.is_authenticated%}
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" >
+                <div id="login-box">
+                    {%if form.errors%}
+                    <div class='errorlist'>
+                        <th>
+                            {{form.errors}}
+                        </th>
+                    </div>
+                    {%endif%}
+                    <form id="login-form" class="form" action="" method="post">
+                        {%csrf_token%}
+                        <h3 class="text-center text-info">{{titulo}}</h3>
+                        {%for field in form%}
+                        <div class="form-group">
+                            {{field|as_crispy_field}}
+                        </div>
+                        {%endfor%}
+                        <div class="form-group">
+                            <label for="remember-me" class="text-info">
+                                <span>Remember me</span>
+                                 <span>
+                                    <input id="remember-me" name="remember-me" type="checkbox">
+                                </span>
+                            </label>
+                            <label for="show-pass" class="checkers text-info">
+                                <span>Mostrar Senha
+                                    <input type="checkbox" name="show-pass" id="show-pass">
+                                </span>
+                            </label><br>
+                                <input type="submit" name="submit" class="btn btn-primary btn-md" value='Login'>
+                        </div>
+                        <div id="register-link" class="text-left">
+
+                            {% if Operation == 'register'%}
+                            <a href="{%url 'User-Login'%}" id='redirect' class="btn btn-secondary">Fazer Login</a>
+                            {% else%}
+                            <a href="{%url 'User-Registration'%}" id='redirect'class="btn btn-secondary">Registar</a>
+                            {%endif%}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% else%}
+<p>Você está logado como {{user}}!!!</p>
+{% endif%}
+{%endblock%}
